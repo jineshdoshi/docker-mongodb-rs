@@ -18,7 +18,7 @@ docker build -t mongodb-rs .
 
 # run
 mkdir -p mongodb-data
-docker run -d --name mongodb-rs -v data:/app/mongodb-data -p 127.0.0.1:27017:27017 -p 127.0.0.1:27018:27018 -p 127.0.0.1:27019:27019 mongodb-rs
+docker run -d --name mongodb-rs -v mongodb-data:/app/mongodb-data -p 127.0.0.1:27017:27017 -p 127.0.0.1:27018:27018 -p 127.0.0.1:27019:27019 mongodb-rs
 docker logs -f mongodb-rs
 ```
 
