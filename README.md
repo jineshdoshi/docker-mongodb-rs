@@ -38,7 +38,7 @@ docker run -d --name mongodb-rs -v `pwd`/mongodb-data:/app/mongodb-data -p 127.0
 ## Verify
 
 ```shell
-docker exec mongodb-rs bash - c "curl localhost:27017"
+docker exec mongodb-rs bash -c "curl localhost:27017"
 ```
 
 If running with `--bind_ip_all` then,
