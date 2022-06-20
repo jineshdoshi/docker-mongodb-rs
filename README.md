@@ -56,7 +56,7 @@ MongoDB Atlas > New Connection > URI: `mongodb://localhost:27017,localhost:27018
 ## Why the version choice:
 
 1. [why nodejs 16](https://github.com/vkarpov15/run-rs/issues/62#issuecomment-1159359964) - As of June 19, 2022, current version of [run-rs 0.7.6](https://github.com/vkarpov15/run-rs/releases/tag/0.7.6) only works with node v16 or below.
-2. [why ubuntu 20.04](https://www.mongodb.com/docs/manual/administration/production-notes/#platform-support-matrix) - As of June 19, 2022, latest stable version of MongoDB 5.0.9 works only on Ubuntu 20.04 ARM64
+2. [why ubuntu 20.04](https://www.mongodb.com/docs/manual/administration/production-notes/#platform-support-matrix) - As of June 19, 2022, all of the official nodejs (including v16) docker images use Debain with ARM64. And latest stable version of MongoDB 5.0.9 does not work on Debian with ARM64 but works on Ubuntu 20.04 ARM64.
 
 [run-rs]:https://github.com/vkarpov15/run-rs
 [mongodb-community-ubuntu]:https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu
