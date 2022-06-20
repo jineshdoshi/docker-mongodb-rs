@@ -18,17 +18,40 @@ docker build -t mongodb-rs .
 
 # run
 mkdir -p mongodb-data
-docker stop mongodb-rs && docker rm -vf mongodb-rs
 docker run -d --name mongodb-rs -v data:/app/mongodb-data -p 127.0.0.1:27017:27017 -p 127.0.0.1:27018:27018 -p 127.0.0.1:27019:27019 mongodb-rs
 docker logs -f mongodb-rs
 ```
 
-## verify
+Note: 
+
+1. To avoid purging of mongodb data append `--keep` flag to the docker run
+2. To connect and view the db locally on host machine OR using [MongoDB Compass][mongodb-compass], append `--bind_ip_all` flag to the docker run command
+
+```shell
+# stop any existing mongodb-rs containers
+docker stop mongodb-rs && docker rm -vf mongodb-rs
+
+# re-run with --keep and --bind_ip_all flags
+docker run -d --name mongodb-rs -v data:/app/mongodb-data -p 127.0.0.1:27017:27017 -p 127.0.0.1:27018:27018 -p 127.0.0.1:27019:27019 mongodb-rs --keep --bind_ip_all
+```
+
+## Verify
+
+```shell
+docker exec mongodb-rs bash - c "curl localhost:27017"
+```
+
+If running with `--bind_ip_all` then,
 
 ```shell
 curl localhost:27017
 ```
 
+## How to connect to MongoDB Compass
+
+Note: this only works if `--bind_ip_all` flag is added
+
+MongoDB Atlas > New Connection > URI: `mongodb://localhost:27017,localhost:27018,localhost:27019/?replicaSet=rs` > Connect
 
 ## Why the version choice:
 
@@ -36,4 +59,5 @@ curl localhost:27017
 2. [why ubuntu 20.04](https://www.mongodb.com/docs/manual/administration/production-notes/#platform-support-matrix)
 
 [run-rs]:https://github.com/vkarpov15/run-rs
-[mongodb-community-ubuntu]:https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
+[mongodb-community-ubuntu]:https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu
+[mongodb-compass]:https://www.mongodb.com/products/compass

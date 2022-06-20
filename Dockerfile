@@ -25,4 +25,4 @@ WORKDIR /app
 
 RUN mkdir -p mongodb-data
 
-CMD ["run-rs", "-v", "5.0.9", "--dbpath", "/app/mongodb-data", "--keep", "--mongod"]
+ENTRYPOINT ["run-rs", "-v", "5.0.9", "--dbpath", "/app/mongodb-data", "--linux", "ubuntu2004", "--mongod"]
